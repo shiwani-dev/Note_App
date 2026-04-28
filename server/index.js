@@ -30,6 +30,14 @@ app.post("/notes", (req, res) => {
     res.status(201).json(newNote);
 });
 
+app.delete("/notes/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  notes = notes.filter((note) => note.id !== id);
+
+  res.json({ message: "Note deleted" });
+});
+
 app.listen(5000, () => {
   console.log("Backend running on port 5000");
 });
