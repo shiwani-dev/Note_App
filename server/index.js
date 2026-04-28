@@ -6,7 +6,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let notes = [];
+let notes = [
+    {id:1, text:"My first proper project like a Pro.",importance:false},
+    {id:2, text:"React with proper structure.",importance:false},
+];
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
@@ -14,6 +17,17 @@ app.get("/", (req, res) => {
 
 app.get("/notes", (req, res) => {
   res.json(notes);
+});
+
+app.post("/notes", (req, res) => {
+
+    const newNote = {
+        id : Date.now(),
+        text : req.body.text,
+        importance : req.body.importance || false,
+    }
+    notes.push(newNote);
+    res.status(201).json(newNote);
 });
 
 app.listen(5000, () => {
