@@ -10,7 +10,7 @@ export const createNote = (note) => {
   return axios.post(API_URL, note);
 };
 
-export const updateNote = (id, data) => {
+export const updateNoteApi = (id, data) => {
   return axios.put(`${API_URL}/${id}`, data);
 };
 
