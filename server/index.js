@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 let notes = [
-    {id:1, text:"My first proper project like a Pro.",importance:false},
+    {id:1, text:"Meeting on Sunday",importance:true},
     {id:2, text:"React with proper structure.",importance:false},
 ];
 
