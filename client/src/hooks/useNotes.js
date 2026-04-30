@@ -12,6 +12,7 @@ export function useNotes() {
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedNotes, setSelectedNotes] = useState([]);
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -102,6 +103,30 @@ export function useNotes() {
     return true;
   });
 
+  const toggleSelect = (id) => {
+    setSelectedNotes((prev) =>
+    prev.includes(id) ? prev.filter((noteId)=> noteId !== id)
+    : [...prev, id]
+    );
+  };
+
+  const deleteSelectedNotes = async () => {
+  try {
+    await Promise.all(
+      selectedNotes.map((id) => deleteNoteApi(id))
+    );
+
+    setNotes(
+      notes.filter((note) => !selectedNotes.includes(note.id))
+    );
+
+    setSelectedNotes([]);
+  } catch (err) {
+    console.log(err);
+    setError("Failed to delete selected notes");
+  }
+};
+
   return {
     notes,
     filteredNotes,
@@ -115,5 +140,8 @@ export function useNotes() {
     deleteNote,
     toggleNote,
     editNote,
+    toggleSelect,
+    selectedNotes,
+    deleteSelectedNotes,
   };
 }

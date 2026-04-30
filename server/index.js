@@ -7,8 +7,10 @@ app.use(cors());
 app.use(express.json());
 
 let notes = [
-    {id:1, text:"Meeting on Sunday",importance:true},
-    {id:2, text:"React with proper structure.",importance:false},
+    {id:1, text:"Review the full React data flow from input typing to backend saving, including how state changes, props pass down, and axios sends data to the server.",importance:true},
+    {id:2, text:"Refactor the Notes App into a clean structure with components, custom hooks, and services so the project looks more professional and easier to maintain.",importance:false},
+    {id:3, text:"Test every backend CRUD route carefully using browser and PowerShell before connecting it with the frontend UI.",importance:false},
+    {id:4, text:"Replace the old prompt-based edit system with inline editing so users can update notes directly inside the note card.",importance:false},
 ];
 
 app.get("/", (req, res) => {

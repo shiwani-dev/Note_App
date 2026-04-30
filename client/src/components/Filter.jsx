@@ -1,37 +1,42 @@
-function Filter({ filter, setFilter }) {
+function Filter({ filter, handleFilter }) {
+  const buttonStyle = (type, activeClass, inactiveClass) =>
+    `rounded-xl px-4 py-2 text-sm font-semibold transition hover:-translate-y-0.5 active:scale-95 ${
+      filter === type ? activeClass : inactiveClass
+    }`;
+
   return (
-    <div className="flex justify-center gap-3 mb-5">
+    <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
       <button
-        onClick={() => setFilter("all")}
-        className={`px-4 py-2 rounded-xl font-medium transition ${
-          filter === "all"
-            ? "bg-blue-600 text-white"
-            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-        }`}
+        onClick={() => handleFilter("all")}
+        className={buttonStyle(
+          "all",
+          "bg-blue-600 text-white shadow-sm shadow-blue-200",
+          "bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+        )}
       >
-        All
+        📋 All
       </button>
 
       <button
-        onClick={() => setFilter("important")}
-        className={`px-4 py-2 rounded-xl font-medium transition ${
-          filter === "important"
-            ? "bg-green-600 text-white"
-            : "bg-green-100 text-green-700 hover:bg-green-200"
-        }`}
+        onClick={() => handleFilter("important")}
+        className={buttonStyle(
+          "important",
+          "bg-green-500 text-white shadow-sm shadow-green-200",
+          "bg-white text-slate-600 hover:bg-green-50 hover:text-green-600"
+        )}
       >
-        Important
+        ⭐ Important
       </button>
 
       <button
-        onClick={() => setFilter("notImportant")}
-        className={`px-4 py-2 rounded-xl font-medium transition ${
-          filter === "notImportant"
-            ? "bg-red-600 text-white"
-            : "bg-red-100 text-red-700 hover:bg-red-200"
-        }`}
+        onClick={() => handleFilter("notImportant")}
+        className={buttonStyle(
+          "notImportant",
+          "bg-pink-500 text-white shadow-sm shadow-pink-200",
+          "bg-white text-slate-600 hover:bg-pink-50 hover:text-pink-600"
+        )}
       >
-        Not Important
+        🌸 Normal
       </button>
     </div>
   );
