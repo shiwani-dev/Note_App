@@ -32,7 +32,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-blue-200 via-violet-50 to-pink-50 px-4 py-8">
+    <div className="min-h-screen overflow-x-hidden bg-linear-to-br from-blue-200 via-violet-50 to-pink-50 px-4 py-8">
       <main className="mx-auto w-full max-w-4xl">
         <section className="mb-5 text-center animate-fade-in bg-green-200 rounded-2xl border border-purple-100">
           <div className="inline-flex items-center mt-4 gap-2 rounded-full border border-purple-100 bg-white/80 px-4 py-2 text-sm font-medium text-purple-700 shadow-sm">
