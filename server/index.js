@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 
@@ -16,6 +17,8 @@ let notes = [
 app.get("/", (req, res) => {
   res.send("Backend is running");
 });
+
+app.use("/auth", authRoutes);
 
 app.get("/notes", (req, res) => {
   res.json(notes);
