@@ -1,18 +1,10 @@
-import { useState, } from "react";
+import { useState} from "react";
 import { loginApi, signupApi } from "../services/authApi";
 
 export function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  // load user on refresh
-//   useEffect(() => {
-//     const storedUser = JSON.parse(localStorage.getItem("user") || "null");
-//     if (storedUser) {
-//       setUser(storedUser);
-//     }
-//   }, []);
 
   const login = async ({ email, password }) => {
     try {
