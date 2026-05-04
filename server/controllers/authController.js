@@ -1,6 +1,12 @@
-import { users } from "../data/users.js";
+import Note from "../models/Note.js";
 
-export const signup = (req, res) => {
+export const getNotes = async (req, res) => {
+  const notes = await Note.find();
+
+  res.json(notes);
+}
+
+ export const signup = (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -55,4 +61,4 @@ export const login = (req, res) => {
     message: "Login successful",
     user,
   });
-};
+}; 

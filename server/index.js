@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import { connectDB } from "./config/db.js";
 
 const app = express();
 
@@ -54,6 +55,8 @@ app.put("/notes/:id", (req, res) => {
 
   res.json(updatedNote);
 });
+
+connectDB();
 
 app.listen(5000, () => {
   console.log("Backend running on port 5000");

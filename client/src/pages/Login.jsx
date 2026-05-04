@@ -17,7 +17,7 @@ function Login() {
     if (!email || !password) return;
 
     const success = await login({ email, password });
-
+   console.log (success)
     if (success) {
       navigate("/notes");
     }

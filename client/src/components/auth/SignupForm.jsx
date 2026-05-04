@@ -1,4 +1,3 @@
-import p1 from "../../assets/p1.jpg";
 import { Link } from "react-router-dom";
 
 function SignupForm ({
@@ -10,6 +9,7 @@ function SignupForm ({
     password,
     setPassword,
     loading,
+    name,
 
 }) {
 
@@ -18,15 +18,14 @@ function SignupForm ({
     return (
 
         <div
-      style={{ backgroundImage: `url(${p1})` }}
-      className="flex min-h-screen items-center justify-center bg-cover bg-center "
+      className="flex min-h-screen items-center justify-center bg-cover bg-center bg-purple-900"
     >
       <form
         onSubmit={handleSignup}
         className="w-full max-w-md rounded-1xl border border-white/30 bg-white/25 p-8 shadow-2xl backdrop-blur-md"
       >
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-extrabold text-purple-700">
+          <h1 className="mb-2 text-3xl font-extrabold">
             Sign Up
           </h1>
 
@@ -106,14 +105,14 @@ function SignupForm ({
         <button
           type="submit"
           disabled={loading}
-          className="mt-5 w-full rounded-1xl bg-violet-600 py-3 text-sm font-semibold text-white transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="mt-5 w-full rounded-1xl  py-3 text-sm font-semibold text-white  bg-violet-600 disabled:cursor-not-allowed transition hover:bg-violet-700 disabled:opacity-60"
         >
           {loading ? "Creating account..." : "Create Account"}
         </button>
 
         <p className="mt-4 text-center text-sm ">
           Already have an account?{" "}
-          <Link to="/login" className="font-semibold text-violet-700">
+          <Link to="/login" className=" hover:underline">
             Login
           </Link>
         </p>

@@ -1,0 +1,4 @@
+Create user data base with email username and password
+Password should be hashed with bcrypt 
+validation from database 
+remove data folder user
