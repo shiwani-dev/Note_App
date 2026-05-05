@@ -1,64 +1,70 @@
-import Note from "../models/Note.js";
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-export const getNotes = async (req, res) => {
-  const notes = await Note.find();
+export const register = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  res.json(notes);
-}
+    // ✅ validation
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
 
- export const signup = (req, res) => {
-  const { name, email, password } = req.body;
+    // ✅ check existing user
+    const existing = await User.findOne({ email });
+    if (existing) {
+      return res.status(400).json({ message: "User already exists" });
+    }
 
-  if (!name || !email || !password) {
-    return res.status(400).json({
-      message: "All fields are required",
-    });
+    // ✅ hash password
+    const hashed = await bcrypt.hash(password, 10);
+
+    // ✅ save user
+    const user = new User({ email, password: hashed });
+    await user.save();
+
+    res.status(201).json({ message: "User registered" });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server error" });
   }
-
-  const existingUser = users.find((user) => user.email === email);
-
-  if (existingUser) {
-    return res.status(400).json({
-      message: "User already exists",
-    });
-  }
-
-  const newUser = {
-    id: Date.now(),
-    name,
-    email,
-    password,
-  };
-
-  users.push(newUser);
-
-  res.status(201).json({
-    message: "Signup successful",
-    user: newUser,
-  });
 };
 
-export const login = (req, res) => {
-  const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({
-      message: "Email and password are required",
-    });
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // ✅ validation
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields required" });
+    }
+
+    // ✅ find user
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    // ✅ compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+
+    // ✅ generate token
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.json({ token });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server error" });
   }
-
-  const user = users.find(
-    (user) => user.email === email && user.password === password
-  );
-
-  if (!user) {
-    return res.status(401).json({
-      message: "Invalid email or password",
-    });
-  }
-
-  res.json({
-    message: "Login successful",
-    user,
-  });
-}; 
+};

@@ -1,11 +1,11 @@
-import { useState} from "react";
+import { useState } from "react";
 import { loginApi, signupApi } from "../services/authApi";
 
 export function useAuth() {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // ✅ LOGIN
   const login = async ({ email, password }) => {
     try {
       setLoading(true);
@@ -13,20 +13,19 @@ export function useAuth() {
 
       const res = await loginApi({ email, password });
 
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      setUser(res.data.user);
+      // 🔑 SAVE TOKEN (MOST IMPORTANT)
+      localStorage.setItem("token", res.data.token);
 
       return true;
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Login failed"
-      );
+      setError(err.response?.data?.message || "Login failed");
       return false;
     } finally {
       setLoading(false);
     }
   };
 
+  // ✅ SIGNUP
   const signup = async ({ name, email, password }) => {
     try {
       setLoading(true);
@@ -34,27 +33,24 @@ export function useAuth() {
 
       const res = await signupApi({ name, email, password });
 
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      setUser(res.data.user);
+      // optional: auto-login after signup
+      localStorage.setItem("token", res.data.token);
 
       return true;
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Signup failed"
-      );
+      setError(err.response?.data?.message || "Signup failed");
       return false;
     } finally {
       setLoading(false);
     }
   };
 
+  // ✅ LOGOUT
   const logout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
+    localStorage.removeItem("token");
   };
 
   return {
-    user,
     loading,
     error,
     login,

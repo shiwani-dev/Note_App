@@ -56,7 +56,7 @@ export function useNotes() {
     try {
       await deleteNoteApi(id);
 
-      setNotes(notes.filter((note) => note.id !== id));
+      setNotes(notes.filter((note) => note._id !== id));
     } catch (err) {
       console.log(err);
       setError("Failed to delete note");
@@ -65,14 +65,15 @@ export function useNotes() {
 
   const toggleNote = async (id) => {
     try {
-      const targetNote = notes.find((note) => note.id === id);
+      const targetNote = notes.find((note) => note._id === id);
+      if (!targetNote) return;
 
       const res = await updateNoteApi(id, {
         importance: !targetNote.importance,
       });
 
       setNotes(
-        notes.map((note) => (note.id === id ? res.data : note))
+        notes.map((note) => (note._id === id ? res.data : note))
       );
     } catch (err) {
       console.log(err);
@@ -89,7 +90,7 @@ export function useNotes() {
       });
 
       setNotes(
-        notes.map((note) => (note.id === id ? res.data : note))
+        notes.map((note) => (note._id === id ? res.data : note))
       );
     } catch (err) {
       console.log(err);
@@ -117,7 +118,7 @@ export function useNotes() {
     );
 
     setNotes(
-      notes.filter((note) => !selectedNotes.includes(note.id))
+      notes.filter((note) => !selectedNotes.includes(note._id))
     );
 
     setSelectedNotes([]);

@@ -8,13 +8,13 @@ function NoteItem({
   selectedNotes,
   toggleSelect,
 }) {
-  const isSelected = selectedNotes.includes(note.id);
+  const isSelected = selectedNotes.includes(note._id);
 
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(note.text);
 
   const handleSave = () => {
-    editNote(note.id, editText);
+    editNote(note._id, editText);
     setIsEditing(false);
   };
 
@@ -34,7 +34,7 @@ function NoteItem({
           <input
             type="checkbox"
             checked={isSelected}
-            onChange={() => toggleSelect(note.id)}
+            onChange={() => toggleSelect(note._id)}
             className="mt-1 h-4 w-4 accent-blue-500"
           />
 
@@ -73,7 +73,7 @@ function NoteItem({
 
         <div className="flex flex-wrap items-center gap-2 sm:justify-end">
           <button
-            onClick={() => toggleNote(note.id)}
+            onClick={() => toggleNote(note._id)}
             className={`rounded-xl px-3 py-2 text-xs font-semibold transition active:scale-95 ${
               note.importance
                 ? "bg-green-50 text-green-700 hover:bg-green-100"
@@ -109,7 +109,7 @@ function NoteItem({
           )}
 
           <button
-            onClick={() => deleteNote(note.id)}
+            onClick={() => deleteNote(note._id)}
             className="rounded-xl bg-red-50 px-3 py-2 text-xs font-semibold text-red-600 transition hover:bg-red-100 active:scale-95"
           >
             Delete

@@ -30,7 +30,7 @@ function NoteList({
     <div className="space-y-3">
       {notes.map((note, index) => (
         <div
-          key={note.id}
+          key={note._id}
           className="animate-note-in"
           style={{ animationDelay: `${index * 60}ms` }}
         >
