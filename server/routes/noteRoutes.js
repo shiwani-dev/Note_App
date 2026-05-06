@@ -4,13 +4,11 @@ import Note from "../models/Note.js";
 
 const router = express.Router();
 
-// ✅ GET user notes
 router.get("/", protect, async (req, res) => {
   const notes = await Note.find({ user: req.user.id });
   res.json(notes);
 });
 
-// ✅ CREATE note
 router.post("/", protect, async (req, res) => {
   const newNote = new Note({
     user: req.user.id,
@@ -22,13 +20,11 @@ router.post("/", protect, async (req, res) => {
   res.status(201).json(saved);
 });
 
-// ✅ UPDATE note
 router.put("/:id", protect, async (req, res) => {
   const note = await Note.findById(req.params.id);
 
   if (!note) return res.status(404).json({ message: "Note not found" });
-
-  // 🔒 ensure user owns note
+  
   if (note.user.toString() !== req.user.id) {
     return res.status(401).json({ message: "Not authorized" });
   }
@@ -42,7 +38,6 @@ router.put("/:id", protect, async (req, res) => {
   res.json(updated);
 });
 
-// ✅ DELETE note
 router.delete("/:id", protect, async (req, res) => {
   const note = await Note.findById(req.params.id);
 

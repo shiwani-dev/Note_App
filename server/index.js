@@ -7,14 +7,13 @@ import { connectDB } from "./config/db.js";
 
 dotenv.config();
 
-const app = express(); // ✅ FIRST create app
+const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 connectDB();
 
-// ✅ THEN use routes
 app.use("/notes", noteRoutes);
 app.use("/auth", authRoutes);
 

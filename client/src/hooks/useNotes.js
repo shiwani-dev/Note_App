@@ -10,7 +10,7 @@ export function useNotes() {
   const [notes, setNotes] = useState([]);
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("all");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selectedNotes, setSelectedNotes] = useState([]);
 
@@ -21,12 +21,12 @@ export function useNotes() {
         setError("");
 
         const res = await getNotes();
+        setLoading(false);
+        
         setNotes(res.data);
       } catch (err) {
         console.log(err);
         setError("Cannot fetch notes from backend");
-      } finally {
-        setLoading(false);
       }
     };
 

@@ -106,6 +106,7 @@ function App() {
             <NoteList
               notes={filteredNotes}
               toggleNote={toggleNote}
+              loading={loading}
               editNote={editNote}
               deleteNote={deleteNote}
               selectedNotes={selectedNotes}
