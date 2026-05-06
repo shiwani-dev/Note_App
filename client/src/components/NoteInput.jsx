@@ -15,19 +15,19 @@ function NoteInput({ input, setInput, addNote }) {
               if (e.key === "Enter") addNote();
             }}
             placeholder="Write a new note..."
-            className="w-full rounded-xl border border-slate-200 bg-white px-11 py-3 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+            className="w-full rounded-xl border border-slate-200 bg-white/80 px-11 py-3 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
           />
         </div>
 
         <button
           onClick={addNote}
-          className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md active:scale-95"
+          className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md active:scale-95"
         >
           Add Note +
         </button>
       </div>
 
-      <p className="mt-2 ml-3 text-xs text-slate-400">
+      <p className="mt-2 ml-3 text-xs text-white">
          Press Enter to quickly save your note.
       </p>
     </div>

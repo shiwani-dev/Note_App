@@ -30,7 +30,7 @@ function NoteItem({
 
   return (
     <div
-      className={`rounded-3xl border bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
+      className={`rounded-3xl border bg-white/80 p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
         note.importance ? "border-green-200" : "border-slate-200"
       } ${isSelected ? "ring-4 ring-blue-100 border-blue-300" : ""}`}
     >

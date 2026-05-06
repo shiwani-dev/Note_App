@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 
 function SignupForm({
   handleSignup,
@@ -23,7 +25,7 @@ function SignupForm({
         className="w-full max-w-md rounded-1xl border border-white/30 bg-white/25 p-8 shadow-2xl backdrop-blur-md"
       >
         <div className="text-center">
-          <h1 className="mb-2 text-2xl text-blue-700 font-extrabold">Sign Up</h1>
+          <h1 className="mb-2 text-2xl text-violet-600 font-extrabold">Sign Up</h1>
           <p className="mb-5 text-sm">
             Create your account and start organizing your notes.
           </p>
@@ -36,19 +38,21 @@ function SignupForm({
         )}
 
         <div className="flex gap-3">
-          <button
-            type="button"
-            className="flex-1 rounded-1xl bg-gray-200 py-2 text-sm font-medium text-slate-700 transition hover:bg-violet-100"
-          >
-            Google
-          </button>
+         <button
+          type="button"
+          className="flex-1 flex items-center justify-center gap-2 rounded-1xl bg-gray-100 py-2 text-sm font-medium text-slate-700 transition hover:bg-gray-300"
+        >
+          <FcGoogle size={20} />
+          Google
+        </button>
 
-          <button
-            type="button"
-            className="flex-1 rounded-1xl bg-gray-200 py-2 text-sm font-medium text-slate-700 transition hover:bg-violet-100"
-          >
-            Facebook
-          </button>
+        <button
+        type="button"
+        className="flex-1 flex items-center justify-center gap-2 rounded-1xl bg-gray-100 py-2 text-sm text-slate-700 transition hover:bg-gray-300"
+      >
+        <FaFacebook size={20} className="text-blue-600" />
+        Facebook
+      </button>
         </div>
 
         <div className="my-5 flex items-center gap-3 text-xs text-slate-400">
@@ -64,7 +68,7 @@ function SignupForm({
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your full name"
-            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-100 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
           />
         </div>
 
@@ -75,7 +79,7 @@ function SignupForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-100 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
           />
         </div>
 
@@ -86,7 +90,7 @@ function SignupForm({
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Create a password"
-            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-100 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
           />
         </div>
 

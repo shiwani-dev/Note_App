@@ -11,7 +11,7 @@ function Filter({ filter, handleFilter }) {
         className={buttonStyle(
           "all",
           "bg-blue-600 text-white shadow-sm shadow-blue-200",
-          "bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+          "bg-white/80 text-slate-600 hover:bg-blue-50 hover:text-blue-600"
         )}
       >
         📋 All
@@ -22,7 +22,7 @@ function Filter({ filter, handleFilter }) {
         className={buttonStyle(
           "important",
           "bg-green-500 text-white shadow-sm shadow-green-200",
-          "bg-white text-slate-600 hover:bg-green-50 hover:text-green-600"
+          "bg-white/80 text-slate-600 hover:bg-green-50 hover:text-green-600"
         )}
       >
         ⭐ Important
@@ -33,7 +33,7 @@ function Filter({ filter, handleFilter }) {
         className={buttonStyle(
           "notImportant",
           "bg-pink-500 text-white shadow-sm shadow-pink-200",
-          "bg-white text-slate-600 hover:bg-pink-50 hover:text-pink-600"
+          "bg-white/80 text-slate-600 hover:bg-pink-50 hover:text-pink-600"
         )}
       >
         🌸 Normal
