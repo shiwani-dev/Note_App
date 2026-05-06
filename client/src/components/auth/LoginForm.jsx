@@ -17,7 +17,7 @@ function LoginForm ({
     return(
 
         <div
-      className="flex min-h-screen items-center justify-center  "
+      className="flex min-h-screen items-center justify-center bg-linear-to-br from-black via-purple-950 to-purple-700  "
     >
       <form
         onSubmit={handleLogin}

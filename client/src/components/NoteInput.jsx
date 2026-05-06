@@ -21,7 +21,7 @@ function NoteInput({ input, setInput, addNote }) {
 
         <button
           onClick={addNote}
-          className="rounded-xl bg-blue-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md active:scale-95"
+          className="rounded-xl bg-purple-700 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-purple-500 hover:shadow-md active:scale-95"
         >
           Add Note +
         </button>

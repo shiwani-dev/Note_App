@@ -19,14 +19,14 @@ function SignupForm({
 };
 
   return (
-    <div className="flex min-h-screen items-center justify-center ">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-black via-purple-950 to-purple-700">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-md rounded-1xl border border-white/30 bg-white/25 p-8 shadow-2xl backdrop-blur-md"
       >
         <div className="text-center">
-          <h1 className="mb-2 text-2xl text-violet-600 font-extrabold">Sign Up</h1>
-          <p className="mb-5 text-sm">
+          <h1 className="mb-2 text-2xl text-white font-extrabold">Sign Up</h1>
+          <p className="mb-5 text-sm text-white">
             Create your account and start organizing your notes.
           </p>
         </div>
@@ -40,7 +40,7 @@ function SignupForm({
         <div className="flex gap-3">
          <button
           type="button"
-          className="flex-1 flex items-center justify-center gap-2 rounded-1xl bg-gray-100 py-2 text-sm font-medium text-slate-700 transition hover:bg-gray-300"
+          className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-violet-200 py-2 text-sm font-medium text-slate-700 transition hover:bg-gray-300"
         >
           <FcGoogle size={20} />
           Google
@@ -48,7 +48,7 @@ function SignupForm({
 
         <button
         type="button"
-        className="flex-1 flex items-center justify-center gap-2 rounded-1xl bg-gray-100 py-2 text-sm text-slate-700 transition hover:bg-gray-300"
+        className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-violet-200 py-2 text-sm text-slate-700 transition hover:bg-gray-300"
       >
         <FaFacebook size={20} className="text-blue-600" />
         Facebook
@@ -62,47 +62,47 @@ function SignupForm({
         </div>
 
         <div>
-          <label className="text-sm font-medium">Full Name</label>
+          <label className="text-sm text-white font-medium">Full Name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter your full name"
-            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-100 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            className="mt-2 w-full rounded-2xl border border-white/40 bg-violet-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
           />
         </div>
 
         <div className="mt-4">
-          <label className="text-sm font-medium">Email</label>
+          <label className="text-sm  text-white font-medium">Email</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
-            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-100 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            className="mt-2 w-full rounded-2xl border border-white/40 bg-violet-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
           />
         </div>
 
         <div className="mt-4">
-          <label className="text-sm font-medium">Password</label>
+          <label className="text-sm text-white font-medium">Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Create a password"
-            className="mt-2 w-full rounded-1xl border border-white/40 bg-gray-100 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
+            className="mt-2 w-full rounded-2xl border border-white/40 bg-violet-200 px-4 py-3 text-sm outline-none focus:border-violet-400 focus:ring-4 focus:ring-violet-100"
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="mt-5 w-full rounded-1xl py-3 text-sm font-semibold text-white bg-violet-600 disabled:cursor-not-allowed transition hover:bg-violet-700 disabled:opacity-60"
+          className="mt-5 w-full rounded-2xl py-3 text-sm font-semibold text-white bg-violet-600 disabled:cursor-not-allowed transition hover:bg-violet-700 disabled:opacity-60"
         >
           {loading ? "Creating account..." : "Create Account"}
         </button>
 
-        <p className="mt-4 text-center text-sm">
+        <p className="mt-4 text-center text-white text-sm">
           Already have an account?{" "}
           <Link to="/" className="hover:underline">
             Login
