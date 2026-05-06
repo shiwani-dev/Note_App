@@ -9,8 +9,8 @@ function NoteList({
   toggleSelect,
   loading
 }) {
-  console.log(loading,notes.length)
-  if (!loading&&notes.length === 0) {
+  console.log(loading,notes?.length)
+  if (!loading&&notes?.length === 0) {
     return (
       <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50/70 p-10 text-center">
         <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-2xl">

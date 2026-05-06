@@ -1,4 +1,6 @@
 Create user data base with email username and password ✅
 Password should be hashed with bcrypt ✅
-validation from database 
+validation from database ✅
 remove data folder user ✅
+Profile email, username 
+log out button 

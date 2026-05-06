@@ -10,126 +10,101 @@ export function useNotes() {
   const [notes, setNotes] = useState([]);
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("all");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [selectedNotes, setSelectedNotes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchNotes = async () => {
+    const load = async () => {
       try {
         setLoading(true);
-        setError("");
-
         const res = await getNotes();
+        if (res?.data) setNotes(res.data);
+      } catch {
+        setError("Failed to fetch notes");
+      } finally {
         setLoading(false);
-        
-        setNotes(res.data);
-      } catch (err) {
-        console.log(err);
-        setError("Cannot fetch notes from backend");
       }
     };
-
-    fetchNotes();
+    load();
   }, []);
 
   const addNote = async () => {
-    if (input.trim() === "") return;
-
     try {
-      const newNote = {
-        text: input,
-        importance: false,
-      };
-
-      const res = await createNote(newNote);
-
-      setNotes([...notes, res.data]);
+      if (!input.trim()) return;
+      const res = await createNote({ text: input });
+      if (!res?.data) return;
+      setNotes((prev) => [res.data, ...prev]);
       setInput("");
-    } catch (err) {
-      console.log(err);
-      setError("Failed to add note");
+    } catch {
+      setError("Add failed");
     }
   };
 
   const deleteNote = async (id) => {
     try {
       await deleteNoteApi(id);
-
-      setNotes(notes.filter((note) => note._id !== id));
-    } catch (err) {
-      console.log(err);
-      setError("Failed to delete note");
+      setNotes((prev) => prev.filter((n) => n._id !== id));
+    } catch {
+      setError("Delete failed");
     }
   };
 
   const toggleNote = async (id) => {
     try {
-      const targetNote = notes.find((note) => note._id === id);
-      if (!targetNote) return;
-
+      const note = notes.find((n) => n._id === id);
+      if (!note) return;
       const res = await updateNoteApi(id, {
-        importance: !targetNote.importance,
+        importance: !note.importance,
       });
-
-      setNotes(
-        notes.map((note) => (note._id === id ? res.data : note))
+      if (!res?.data) return;
+      setNotes((prev) =>
+        prev.map((n) => (n._id === id ? res.data : n))
       );
-    } catch (err) {
-      console.log(err);
-      setError("Failed to update note");
+    } catch {
+      setError("Update failed");
     }
   };
 
-  const editNote = async (id, newText) => {
-    if (!newText || newText.trim() === "") return;
-
+  const editNote = async (id, text) => {
     try {
-      const res = await updateNoteApi(id, {
-        text: newText,
-      });
-
-      setNotes(
-        notes.map((note) => (note._id === id ? res.data : note))
+      const res = await updateNoteApi(id, { text });
+      if (!res?.data) return;
+      setNotes((prev) =>
+        prev.map((n) => (n._id === id ? res.data : n))
       );
-    } catch (err) {
-      console.log(err);
-      setError("Failed to edit note");
+    } catch {
+      setError("Edit failed");
     }
   };
-
-  const filteredNotes = notes.filter((note) => {
-    if (filter === "important") return note.importance === true;
-    if (filter === "notImportant") return note.importance === false;
-    return true;
-  });
 
   const toggleSelect = (id) => {
     setSelectedNotes((prev) =>
-    prev.includes(id) ? prev.filter((noteId)=> noteId !== id)
-    : [...prev, id]
+      prev.includes(id)
+        ? prev.filter((i) => i !== id)
+        : [...prev, id]
     );
   };
 
   const deleteSelectedNotes = async () => {
-  try {
-    await Promise.all(
-      selectedNotes.map((id) => deleteNoteApi(id))
-    );
+    try {
+      await Promise.all(selectedNotes.map((id) => deleteNoteApi(id)));
+      setNotes((prev) =>
+        prev.filter((n) => !selectedNotes.includes(n._id))
+      );
+      setSelectedNotes([]);
+    } catch {
+      setError("Bulk delete failed");
+    }
+  };
 
-    setNotes(
-      notes.filter((note) => !selectedNotes.includes(note._id))
-    );
-
-    setSelectedNotes([]);
-  } catch (err) {
-    console.log(err);
-    setError("Failed to delete selected notes");
-  }
-};
+  const filteredNotes = (notes || []).filter((note) => {
+    if (filter === "important") return note.importance;
+    if (filter === "normal") return !note.importance;
+    return true;
+  });
 
   return {
-    notes,
     filteredNotes,
     input,
     setInput,
@@ -141,8 +116,8 @@ export function useNotes() {
     deleteNote,
     toggleNote,
     editNote,
-    toggleSelect,
     selectedNotes,
+    toggleSelect,
     deleteSelectedNotes,
   };
 }

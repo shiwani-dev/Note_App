@@ -5,15 +5,12 @@ export function useAuth() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ LOGIN
   const login = async ({ email, password }) => {
     try {
       setLoading(true);
       setError("");
 
       const res = await loginApi({ email, password });
-
-      // 🔑 SAVE TOKEN (MOST IMPORTANT)
       localStorage.setItem("token", res.data.token);
 
       return true;
@@ -25,15 +22,12 @@ export function useAuth() {
     }
   };
 
-  // ✅ SIGNUP
-  const signup = async ({ name, email, password }) => {
+  const signup = async ({ email, password }) => {
     try {
       setLoading(true);
       setError("");
 
-      const res = await signupApi({ name, email, password });
-
-      // optional: auto-login after signup
+      const res = await signupApi({ email, password });
       localStorage.setItem("token", res.data.token);
 
       return true;
@@ -45,16 +39,9 @@ export function useAuth() {
     }
   };
 
-  // ✅ LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
   };
 
-  return {
-    loading,
-    error,
-    login,
-    signup,
-    logout,
-  };
+  return { login, signup, logout, loading, error };
 }

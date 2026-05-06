@@ -8,18 +8,23 @@ function NoteItem({
   selectedNotes,
   toggleSelect,
 }) {
-  const isSelected = selectedNotes.includes(note._id);
+  const isSelected = selectedNotes?.includes(note._id);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(note.text);
+  const [editText, setEditText] = useState("");
+
+  const startEdit = () => {
+    setEditText(note.text);
+    setIsEditing(true);
+  };
 
   const handleSave = () => {
+    if (!editText.trim()) return;
     editNote(note._id, editText);
     setIsEditing(false);
   };
 
   const handleCancel = () => {
-    setEditText(note.text);
     setIsEditing(false);
   };
 
@@ -74,6 +79,7 @@ function NoteItem({
         <div className="flex flex-wrap items-center gap-2 sm:justify-end">
           <button
             onClick={() => toggleNote(note._id)}
+            disabled={isEditing}
             className={`rounded-xl px-3 py-2 text-xs font-semibold transition active:scale-95 ${
               note.importance
                 ? "bg-green-50 text-green-700 hover:bg-green-100"
@@ -101,7 +107,7 @@ function NoteItem({
             </>
           ) : (
             <button
-              onClick={() => setIsEditing(true)}
+              onClick={startEdit}
               className="rounded-xl bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-600 transition hover:bg-blue-100 active:scale-95"
             >
               Edit

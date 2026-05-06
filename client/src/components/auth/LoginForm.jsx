@@ -14,14 +14,14 @@ function LoginForm ({
     return(
 
         <div
-      className="flex min-h-screen items-center justify-center bg-cover bg-center "
+      className="flex min-h-screen items-center justify-center  "
     >
       <form
         onSubmit={handleLogin}
-        className="w-full max-w-md rounded-1xl border bg-white p-8 shadow-2xl "
+        className="w-full max-w-md rounded-1xl bg-white p-8 shadow-2xl "
       >
         <div className="text-center">
-          <h1 className="mb-2 text-2xl font-extrabold ">
+          <h1 className="mb-2 text-2xl text-blue-700 font-extrabold ">
             Login
           </h1>
 

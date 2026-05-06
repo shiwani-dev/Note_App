@@ -16,18 +16,21 @@ export const register = async (req, res) => {
     }
 
     const hashed = await bcrypt.hash(password, 10);
-
     const user = new User({ email, password: hashed });
     await user.save();
 
-    res.status(201).json({ message: "User registered" });
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.status(201).json({ token });
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Server error" });
   }
 };
-
 
 export const login = async (req, res) => {
   try {
@@ -55,8 +58,7 @@ export const login = async (req, res) => {
 
     res.json({ token });
 
-  } catch (err) {
-    console.log(err);
+  } catch {
     res.status(500).json({ message: "Server error" });
   }
 };

@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signupApi } from "../services/authApi";
 import SignupForm from "../components/auth/SignupForm";
 
@@ -17,48 +16,59 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    if (!name.trim() || !email.trim() || !password.trim()) {
-      setError("Please fill all fields");
+    setError("");
+
+    if (!name.trim()) {
+      setError("Name is required");
+      return;
+    }
+
+    if (!email.trim()) {
+      setError("Email is required");
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setError("Invalid email");
+      return;
+    }
+
+    if (!password.trim()) {
+      setError("Password is required");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
       return;
     }
 
     try {
       setLoading(true);
-      setError("");
 
-      const res = await signupApi({
-        name,
-        email,
-        password,
-      });
+      const res = await signupApi({ name, email, password });
 
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("token", res.data.token);
 
       navigate("/notes");
     } catch (err) {
-      console.log(err);
-
-      setError(
-        err.response?.data?.message || "Signup failed. Please try again."
-      );
+      setError(err.response?.data?.message || "Signup failed");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-
     <SignupForm
-    name={name}
-    setName={setName}
-    email={email}
-    setEmail={setEmail}
-    password={password}
-    setPassword={setPassword}
-    handleSignup={handleSignup}
-    loading={loading}
-    error={error}
-
+      name={name}
+      setName={setName}
+      email={email}
+      setEmail={setEmail}
+      password={password}
+      setPassword={setPassword}
+      handleSignup={handleSignup}
+      loading={loading}
+      error={error}
     />
   );
 }

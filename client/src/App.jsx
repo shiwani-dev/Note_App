@@ -1,37 +1,24 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotesPage from "./pages/NotesPage";
-import { useEffect } from "react";
-function ProtectedLayout({children}){
-  const token=localStorage.getItem("token")
-  console.log(token)
-  const navigate=useNavigate();
 
-  useEffect(()=>{
-    if(!token){
-      navigate("/")
-    }else{
-      navigate("/notes")
-    }
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/" replace />;
+}
 
-  },[navigate,token])
-  
-  return children;
+function PublicRoute({ children }) {
+  const token = localStorage.getItem("token");
+  return token ? <Navigate to="/notes" replace /> : children;
 }
 
 function App() {
-
   return (
     <Routes>
-      <Route path="/" element={<ProtectedLayout><Login /></ProtectedLayout>} />
-      <Route path="/signup" element={<Signup />} />
-
-      <Route
-        path="/notes"
-        element={<ProtectedLayout><NotesPage/></ProtectedLayout>}
-      />
-
+      <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
+      <Route path="/notes" element={<ProtectedRoute><NotesPage /></ProtectedRoute>} />
     </Routes>
   );
 }
