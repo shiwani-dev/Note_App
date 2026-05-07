@@ -1,8 +1,10 @@
 import { useNotes } from "../hooks/useNotes";
+import { useNavigate } from "react-router-dom";
 import NoteInput from "../components/NoteInput";
 import Filter from "../components/Filter";
 import NoteList from "../components/NoteList";
 import LoadingSkeleton from "../components/LoadingSkeleton";
+import Profile from "../components/Profile";
 import { useTransition } from "react";
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
     deleteSelectedNotes,
   } = useNotes();
 
+  const navigate = useNavigate();
   const [isPending, startTransition] = useTransition();
 
   const handleFilter = (type) => {
@@ -30,42 +33,52 @@ function App() {
       setFilter(type);
     });
   };
-console.log(filter)
+const user = JSON.parse(localStorage.getItem("user")) || {};
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden  text-white border bg-linear-to-br from-black via-purple-950 to-purple-700
   py-8">
       <main className="mx-auto w-full max-w-4xl">
-        <section className="mb-5 text-center animate-fade-in  rounded-2xl border border-purple-100">
-          <div className="inline-flex items-center mt-4 gap-2 rounded-full  bg-purple-700   px-4 py-2 text-sm font-medium text-white shadow-sm">
+
+        <section className=" flex mb-5 text-center animate-fade-in  rounded-2xl border border-purple-100">
+          <div>
+            <Profile user={user} onLogout={handleLogout} />
+          </div>
+          <div>
+            <div className="inline-flex items-center mt-4 gap-2 rounded-full  bg-purple-700   px-4 py-2 text-sm font-medium text-white shadow-sm">
             <span>📋</span>
             <span>Smart Notes Manager</span>
           </div>
-
           
-
           <p className="mx-auto mt-2 p-4 max-w-xl  text-white sm:text-base">
             Create, edit, delete, and prioritize your notes in a calm, focused
             workspace.
           </p>
+          </div>
         </section>
 
         <section className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
           <div className="rounded-2xl border border-purple-100  p-4 shadow-sm transition hover:shadow-md">
-            <p className="text-sm text-white">📝 Visible Notes</p>
+            <p className="text-sm text-white"> Visible Notes</p>
             <h2 className="mt-1 text-2xl font-bold text-white">
               {filteredNotes.length}
             </h2>
           </div>
 
           <div className="rounded-2xl border border-violet-100  p-4 shadow-sm transition hover:shadow-md">
-            <p className="text-sm text-white">⭐ Selected</p>
+            <p className="text-sm text-white"> Selected</p>
             <h2 className="mt-1 text-2xl font-bold text-white">
               {selectedNotes.length}
             </h2>
           </div>
 
           <div className="rounded-2xl border border-pink-100  p-4 shadow-sm transition hover:shadow-md">
-            <p className="text-sm text-white">🌿 Status</p>
+            <p className="text-sm text-white"> Status</p>
             <h2 className="mt-1 text-base font-semibold text-white">
               {loading ? "Loading..." : "Ready"}
             </h2>

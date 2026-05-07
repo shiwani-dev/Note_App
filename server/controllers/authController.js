@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || !name ) {
       return res.status(400).json({ message: "All fields required" });
     }
 
@@ -16,7 +16,7 @@ export const register = async (req, res) => {
     }
 
     const hashed = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashed });
+    const user = new User({ name, email, password: hashed });
     await user.save();
 
     const token = jwt.sign(
@@ -25,7 +25,13 @@ export const register = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.status(201).json({ token });
+    res.status(201).json({
+       token,
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+      });
 
   } catch (err) {
     res.status(500).json({ message: "Server error" });
@@ -56,7 +62,13 @@ export const login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.json({ token });
+    res.json({ 
+      token,
+      user: {
+        email: user.email,
+        name: user.name,
+      },
+    });
 
   } catch {
     res.status(500).json({ message: "Server error" });

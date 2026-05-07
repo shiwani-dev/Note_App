@@ -45,11 +45,12 @@ function Signup() {
 
     try {
       setLoading(true);
-
       const res = await signupApi({ name, email, password });
 
       localStorage.setItem("token", res.data.token);
-
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      console.log(res.data);
+      
       navigate("/notes");
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");

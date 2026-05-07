@@ -12,6 +12,7 @@ export function useAuth() {
 
       const res = await loginApi({ email, password });
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
       return true;
     } catch (err) {
