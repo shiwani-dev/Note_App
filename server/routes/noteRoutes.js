@@ -32,7 +32,7 @@ router.put("/:id", protect, async (req, res) => {
   const updated = await Note.findByIdAndUpdate(
     req.params.id,
     req.body,
-    { new: true }
+    { returnDocument: "after", }
   );
 
   res.json(updated);

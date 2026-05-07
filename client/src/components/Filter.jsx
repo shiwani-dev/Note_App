@@ -29,7 +29,7 @@ function Filter({ filter, handleFilter }) {
       </button>
 
       <button
-        onClick={() => handleFilter("notImportant")}
+        onClick={() => handleFilter("normal")}
         className={buttonStyle(
           "notImportant",
           "bg-pink-500 text-white shadow-sm shadow-pink-200",

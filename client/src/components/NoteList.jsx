@@ -9,7 +9,6 @@ function NoteList({
   toggleSelect,
   loading
 }) {
-  console.log(loading,notes?.length)
   if (!loading&&notes?.length === 0) {
     return (
       <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50/70 p-10 text-center">

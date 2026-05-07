@@ -30,12 +30,12 @@ function App() {
       setFilter(type);
     });
   };
-
+console.log(filter)
   return (
     <div className="min-h-screen overflow-x-hidden  text-white border bg-linear-to-br from-black via-purple-950 to-purple-700
   py-8">
       <main className="mx-auto w-full max-w-4xl">
-        <section className="mb-5 text-center animate-fade-in bg-white/80  rounded-2xl border border-purple-100">
+        <section className="mb-5 text-center animate-fade-in  rounded-2xl border border-purple-100">
           <div className="inline-flex items-center mt-4 gap-2 rounded-full  bg-purple-700   px-4 py-2 text-sm font-medium text-white shadow-sm">
             <span>📋</span>
             <span>Smart Notes Manager</span>
@@ -43,7 +43,7 @@ function App() {
 
           
 
-          <p className="mx-auto mt-2 p-4 max-w-xl text-2xl text-purple-700 sm:text-base">
+          <p className="mx-auto mt-2 p-4 max-w-xl  text-white sm:text-base">
             Create, edit, delete, and prioritize your notes in a calm, focused
             workspace.
           </p>
