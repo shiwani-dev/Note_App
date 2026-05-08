@@ -2,7 +2,7 @@ import Profile from "./Profile";
 
 function Header({ user, onLogout }) {
   return (
-    <section className="flex justify-between items-start mb-5 rounded-2xl border border-purple-100 p-4">
+    <section className="flex gap-45 text-center mb-5 rounded-2xl border bg-slate-50/70 border-purple-100 p-4">
 
         <Profile user={user} onLogout={onLogout} />
 
@@ -12,7 +12,7 @@ function Header({ user, onLogout }) {
           <span>Smart Notes Manager</span>
         </div>
 
-        <p className="mt-2 max-w-xl text-white sm:text-base">
+        <p className="mt-2 max-w-xl text-purple-700 sm:text-base">
           Create, edit, delete, and prioritize your notes.
         </p>
       </div>

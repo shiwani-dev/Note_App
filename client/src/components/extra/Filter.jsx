@@ -14,7 +14,7 @@ function Filter({ filter, handleFilter }) {
           "bg-white/80 text-slate-600 hover:bg-blue-50 hover:text-blue-600"
         )}
       >
-        📋 All
+        All
       </button>
 
       <button
@@ -25,18 +25,18 @@ function Filter({ filter, handleFilter }) {
           "bg-white/80 text-slate-600 hover:bg-green-50 hover:text-green-600"
         )}
       >
-        ⭐ Important
+         Important
       </button>
 
       <button
         onClick={() => handleFilter("normal")}
         className={buttonStyle(
-          "notImportant",
-          "bg-pink-500 text-white shadow-sm shadow-pink-200",
-          "bg-white/80 text-slate-600 hover:bg-pink-50 hover:text-pink-600"
+          "normal",
+          "bg-yellow-500 text-white shadow-sm shadow-pink-200",
+          "bg-white/80 text-slate-600 hover:bg-yellow-50 hover:text-yellow-600"
         )}
       >
-        🌸 Normal
+         Normal
       </button>
     </div>
   );

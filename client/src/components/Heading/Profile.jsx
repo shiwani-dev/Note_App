@@ -8,7 +8,7 @@ function Profile({ user, onLogout }) {
   };
 
   return (
-    <div className="relative flex justify-end p-4">
+    <div className="relative flex p-4">
       <img
         src={`https://ui-avatars.com/api/?name=${user.name}`}
         alt="profile"
@@ -17,17 +17,53 @@ function Profile({ user, onLogout }) {
       />
 
       {showProfile && (
-        <div className="absolute top-12 right-0  rounded-xl bg-white text-black shadow-lg p-4">
-          <p className="font-semibold">{user.name}</p>
-          <p className="text-sm text-gray-500">{user.email}</p>
+       <div className="absolute right-30 w-60 rounded-2xl border border-gray-200 bg-slate-50/70 p-6 shadow-2xl backdrop-blur-md">
 
-          <button
-            onClick={onLogout} 
-            className="mt-3 w-full rounded-lg bg-red-500 text-white py-1"
-          >
-            Logout
-          </button>
-        </div>
+  <div className="mb-2 flex items-center gap-3">
+    
+    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet-100 text-xl font-bold text-violet-700">
+      {user.name?.charAt(0)}
+    </div>
+
+    <div>
+      <h2 className="text-lg font-semibold text-violet-700">
+        Welcome back !
+      </h2>
+
+      <p className="text-sm text-black">
+        User Dashboard
+      </p>
+    </div>
+  </div>
+
+  <div className="mb-4 border-t border-gray-200"></div>
+
+  <div className="space-y-1 text-left">
+
+    <div>
+     
+
+      <p className=" text-black">
+       Name : {user.name}
+      </p>
+    </div>
+
+    <div>
+      <p className="truncate text-sm text-black">
+        Email : {user.email}
+      </p>
+    </div>
+
+  </div>
+
+  <button
+    onClick={onLogout}
+    className="mt-6 w-full rounded-xl bg-violet-700 py-2 font-medium text-white transition hover:bg-violet-800 active:scale-[0.98]"
+  >
+    Logout
+  </button>
+
+</div>
       )}
     </div>
   );

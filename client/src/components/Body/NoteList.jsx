@@ -12,15 +12,15 @@ function NoteList({
   if (!loading&&notes?.length === 0) {
     return (
       <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50/70 p-10 text-center">
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-2xl">
-          🕊️
+        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full text-black text-2xl">
+          ?
         </div>
 
         <h3 className="text-lg font-bold text-slate-800">
           No notes found
         </h3>
 
-        <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-slate-500">
+        <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-black">
           Add a new note or switch your filter to see more notes here.
         </p>
       </div>

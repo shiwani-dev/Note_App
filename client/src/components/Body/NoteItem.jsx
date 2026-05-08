@@ -57,7 +57,8 @@ function NoteItem({
                 autoFocus
               />
             ) : (
-              <p className="text-sm font-medium leading-6 text-slate-800">
+              <p className="text-sm font-medium text-justify 
+               leading-6 text-slate-800">
                 {note.text}
               </p>
             )}
@@ -65,11 +66,11 @@ function NoteItem({
             <div className="mt-2">
               {note.importance ? (
                 <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
-                  ⭐ Important
+                  Important
                 </span>
               ) : (
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
-                  🌸 Normal
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-yellow-700">
+                   Normal
                 </span>
               )}
             </div>
@@ -86,7 +87,7 @@ function NoteItem({
                 : "bg-yellow-50 text-yellow-700 hover:bg-yellow-100"
             }`}
           >
-            {note.importance ? "Marked ⭐" : "Mark ⭐"}
+            {note.importance ? "Marked ☑️" : "Mark ✔️"}
           </button>
 
           {isEditing ? (
