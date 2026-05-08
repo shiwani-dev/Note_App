@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 
-
-
-function LoginForm ({
+function LoginForm({
   handleLogin,
   error,
   email,
@@ -13,20 +11,14 @@ function LoginForm ({
   setPassword,
   loading,
 }) {
-
-    return(
-
-        <div
-      className="flex min-h-screen items-center justify-center bg-linear-to-br from-black via-purple-950 to-purple-700  "
-    >
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-black via-purple-950 to-purple-700  ">
       <form
         onSubmit={handleLogin}
         className="w-full max-w-md rounded-2xl bg-white/25 p-8 shadow-2xl "
       >
         <div className="text-center">
-          <h1 className="mb-2 text-2xl text-white font-extrabold ">
-            Login
-          </h1>
+          <h1 className="mb-2 text-2xl text-white font-extrabold ">Login</h1>
 
           <p className="mb-5 text-sm text-white ">
             Please enter your details to continue.
@@ -41,20 +33,20 @@ function LoginForm ({
 
         <div className="flex gap-3">
           <button
-          type="button"
-          className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-violet-200 py-2 text-sm font-medium text-slate-700 transition hover:bg-gray-300"
-        >
-          <FcGoogle size={20} />
-          Google
-        </button>
+            type="button"
+            className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-violet-200 py-2 text-sm font-medium text-slate-700 transition hover:bg-gray-300"
+          >
+            <FcGoogle size={20} />
+            Google
+          </button>
 
-         <button
-        type="button"
-        className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-violet-200 py-2 text-sm text-slate-700 transition hover:bg-gray-300"
-      >
-        <FaFacebook size={20} className="text-blue-600" />
-        Facebook
-      </button>
+          <button
+            type="button"
+            className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-violet-200 py-2 text-sm text-slate-700 transition hover:bg-gray-300"
+          >
+            <FaFacebook size={20} className="text-blue-600" />
+            Facebook
+          </button>
         </div>
 
         <div className="my-5 flex items-center gap-3 text-xs text-slate-400">
@@ -76,9 +68,7 @@ function LoginForm ({
         </div>
 
         <div className="mt-4">
-          <label className="text-sm font-medium text-white">
-            Password
-          </label>
+          <label className="text-sm font-medium text-white">Password</label>
 
           <input
             type="password"
@@ -116,7 +106,6 @@ function LoginForm ({
         </p>
       </form>
     </div>
-
-    );
-};
+  );
+}
 export default LoginForm;

@@ -4,20 +4,20 @@ import { useAuth } from "../hooks/useAuth";
 import LoginForm from "../components/auth/LoginForm";
 
 function Login() {
-  const navigate = useNavigate();
-  const { login, loading, error } = useAuth();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  const { login, loading, error } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const success = await login({ email, password });
-
-    if (success) {
-      navigate("/notes", { replace: true });
-    }
+    await login({ email, password }, (success) => {
+      if (success) {
+        navigate("/notes", { replace: true });
+      }
+    });
   };
 
   return (

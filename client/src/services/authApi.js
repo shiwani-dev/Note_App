@@ -1,11 +1,15 @@
 import axios from "axios";
 
-const AUTH_URL = "http://localhost:5000/auth";
+const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+});
 
 export const signupApi = (userData) => {
-  return axios.post(`${AUTH_URL}/register`, userData);
+  return API.post("/auth/register", userData);
 };
 
 export const loginApi = (userData) => {
-  return axios.post(`${AUTH_URL}/login`, userData);
+  return API.post("/auth/login", userData);
 };
+
+export default API;

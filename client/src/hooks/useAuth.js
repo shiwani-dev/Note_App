@@ -5,7 +5,7 @@ export function useAuth() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const login = async ({ email, password }) => {
+  const login = async ({ email, password },callback) => {
     try {
       setLoading(true);
       setError("");
@@ -13,7 +13,10 @@ export function useAuth() {
       const res = await loginApi({ email, password });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-
+      
+      if(res){
+        callback(true)
+      }
       return true;
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");

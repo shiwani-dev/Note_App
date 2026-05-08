@@ -1,24 +1,19 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotesPage from "./pages/NotesPage";
-
-function ProtectedRoute({ children }) {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/" replace />;
-}
-
-function PublicRoute({ children }) {
-  const token = localStorage.getItem("token");
-  return token ? <Navigate to="/notes" replace /> : children;
-}
+import PublicRoute from "./providers/public-route";
+import ProtectedRoute from "./providers/protected-route";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PublicRoute><Login /></PublicRoute>} />
-      <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
-      <Route path="/notes" element={<ProtectedRoute><NotesPage /></ProtectedRoute>} />
+      <Route path="/" element={<PublicRoute children={<Login />} />} />
+      <Route path="/signup" element={<PublicRoute children={<Signup />} />} />
+      <Route
+        path="/notes"
+        element={<ProtectedRoute children={<NotesPage />} />}
+      />
     </Routes>
   );
 }

@@ -4,14 +4,17 @@ import { signupApi } from "../services/authApi";
 import SignupForm from "../components/auth/SignupForm";
 
 function Signup() {
-  const navigate = useNavigate();
-
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+ 
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -49,7 +52,6 @@ function Signup() {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      console.log(res.data);
       
       navigate("/notes");
     } catch (err) {
