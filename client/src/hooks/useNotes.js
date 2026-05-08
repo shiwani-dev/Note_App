@@ -4,7 +4,7 @@ import {
   createNote,
   updateNoteApi,
   deleteNoteApi,
-} from "../services/noteApi";
+} from "@/services/noteApi";
 
 export function useNotes() {
   const [notes, setNotes] = useState([]);

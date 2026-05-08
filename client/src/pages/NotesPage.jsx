@@ -1,9 +1,9 @@
-import { useNotes } from "../hooks/useNotes";
-import { useProfile } from "../hooks/useProfile";
+import { useNotes } from "@/hooks/useNotes";
+import { useProfile } from "@/hooks/useProfile";
 import { useTransition } from "react";  
-import Header from "../components/Heading/Header";
-import SubHeader from "../components/Heading/SubHeader";
-import NoteUi from "../components/Body/NoteUi";
+import Header from "@/components/Heading/Header";
+import SubHeader from "@/components/Heading/SubHeader";
+import NoteUi from "@/components/Body/NoteUi";
 
 function NotesPage() {
   const {

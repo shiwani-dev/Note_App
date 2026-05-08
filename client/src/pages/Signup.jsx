@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signupApi } from "../services/authApi";
-import SignupForm from "../components/auth/SignupForm";
+import { signupApi } from "@/services/authApi";
+import SignupForm from "@/components/auth/SignupForm";
 
 function Signup() {
   

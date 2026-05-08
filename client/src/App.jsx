@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import NotesPage from "./pages/NotesPage";
-import PublicRoute from "./providers/public-route";
-import ProtectedRoute from "./providers/protected-route";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import NotesPage from "@/pages/NotesPage";
+import PublicRoute from "@/providers/public-route";
+import ProtectedRoute from "@/providers/protected-route";
 
 function App() {
   return (

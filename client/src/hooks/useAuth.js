@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginApi, signupApi } from "../services/authApi";
+import { loginApi, signupApi } from "@/services/authApi";
 
 export function useAuth() {
   const [loading, setLoading] = useState(false);
