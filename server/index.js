@@ -10,7 +10,10 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "https://meropatra.vercel.app"
+  origin: [
+    "https://meropatra.vercel.app",
+    "http://localhost:5173"
+  ]
 }));
 app.use(express.json());
 
