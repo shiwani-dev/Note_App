@@ -23,17 +23,44 @@ router.post("/", protect, async (req, res) => {
 router.put("/:id", protect, async (req, res) => {
   const note = await Note.findById(req.params.id);
 
+  /* const query = req.query.q || "";
+  const sort = req.query.sort || "asc";
+  const select = req.query.select || "text importance createdAt";
+  const selectFields = select.split(" ").reduce((acc, field) => {
+    acc[field] = 1;
+    return acc;
+  }, {});
+
+  const notes = await Note.aggregate([
+    {
+      $match: {
+        user: new mongoose.Types.ObjectId(req.user.id),
+      },
+    },
+    { $sort: { createdAt: sort === "desc" ? 1 : -1 } },
+    {
+      $addFields: {
+        isImportant: {
+          $cond: [{ $eq: ["$importance", true] }, "important", "not important"],
+        },
+      },
+    },
+    {
+      $project: {
+        ...selectFields,
+      },
+    },
+  ]); */
+
   if (!note) return res.status(404).json({ message: "Note not found" });
-  
+
   if (note.user.toString() !== req.user.id) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
-  const updated = await Note.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { returnDocument: "after", }
-  );
+  const updated = await Note.findByIdAndUpdate(req.params.id, req.body, {
+    returnDocument: "after",
+  });
 
   res.json(updated);
 });
