@@ -14,9 +14,8 @@ app.use(
     origin: ["https://meropatra.vercel.app", "http://localhost:5173"],
   }),
 );
-app.use(express.json());
 
-connectDB();
+app.use(express.json());
 
 app.use("/notes", noteRoutes);
 app.use("/auth", authRoutes);
@@ -27,6 +26,8 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Backend running on port ${PORT}`);
+  });
 });
